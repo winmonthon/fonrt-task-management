@@ -28,7 +28,7 @@
 </div>
 </template>
 
-<script>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
 
 export default {
