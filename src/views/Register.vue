@@ -59,7 +59,7 @@ export default {
         },
         getLineUid() {
             liff.init({
-                liffId: "1656467289-oXJxE72q"
+                liffId: "1656467289-2Mq017bP"
             }, () => {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
