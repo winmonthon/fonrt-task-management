@@ -64,7 +64,7 @@ export default {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
                         //document.getElementById("lineUid").innerHTML = 'UserId:<br>' + profile.userId;
-                        this.form.lineUid = profile.userId;
+                        return this.form.lineUid = profile.userId;
 
                     }).catch(
                         err => console.error(err)
