@@ -56,7 +56,7 @@ export default {
                 lineUid: this.form.lineUid
             })
             await alert('Create Success!!')
-            return this.$router.push({ path: '/registersuccess'})
+            this.$router.push({ path: '/registersuccess'})
         },
         getLineUid() {
             liff.init({
