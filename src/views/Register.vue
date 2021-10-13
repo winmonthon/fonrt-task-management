@@ -55,7 +55,8 @@ export default {
                 password: this.form.password,
                 lineUid: this.form.lineUid
             })
-            alert('Create Success!!')
+            await alert('Create Success!!')
+            return this.$router.push({ path: '/registersuccess'})
         },
         getLineUid() {
             liff.init({
@@ -65,7 +66,7 @@ export default {
                     liff.getProfile().then(profile => {
 
                         this.form.lineUid = profile.userId;
-                        return this.$router.push({ path: '/registersuccess'})
+                        
 
                     }).catch(
                         err => console.error(err)
