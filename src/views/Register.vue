@@ -17,6 +17,7 @@
                     <label for="password" class="form-label">รหัสผ่าน</label>
                     <input type="password" class="form-control" id="password" v-model="form.password">
                 </div>
+                <p id='lineUid'></p>
 
                 <button type="submit" class="btn btn-primary" @click="createUser()">Submit</button>
             </form>
@@ -28,7 +29,7 @@
 </div>
 </template>
 
-<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
 
 export default {
@@ -38,9 +39,13 @@ export default {
             form: {
                 name: '',
                 tel: '',
-                password: null
+                password: null,
+                lineUid: ''
             }
         }
+    },
+    mounted() {
+        this.getLineUid()
     },
     methods: {
         async createUser() {
@@ -48,9 +53,26 @@ export default {
                 name: this.form.name,
                 tel: this.form.tel,
                 password: this.form.password,
-                lineUid: 'asdfasdf74123'
+                lineUid: this.form.lineUid
             })
             alert('Create Success!!')
+        },
+        getLineUid() {
+            liff.init({
+                liffId: "1656467289-oXJxE72q"
+            }, () => {
+                if (liff.isLoggedIn()) {
+                    liff.getProfile().then(profile => {
+                        //document.getElementById("lineUid").innerHTML = 'UserId:<br>' + profile.userId;
+                        this.form.lineUid = profile.userId;
+
+                    }).catch(
+                        err => console.error(err)
+                    );
+                } else {
+                    liff.login();
+                }
+            }, err => console.error(err.code, error.message));
         }
     }
 

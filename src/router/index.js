@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/register",
+    path: "/",
     name: "Register",
     component: Register,
   },
@@ -20,7 +20,7 @@ const routes = [
     component: Task,
   },
   {
-    path: "/",
+    path: "/login",
     name: "Login",
     component: Login,
   },
