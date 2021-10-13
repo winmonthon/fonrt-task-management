@@ -5,14 +5,20 @@ import Register from "../views/Register.vue"
 import Task from "../views/CreateTask.vue"
 import Login from "../views/Login.vue"
 import SeeTask from "../views/SeeTask.vue"
+import RegisterSuccess from "../views/RegisterSuccess.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: "/",
-    name: "/",
+    name: "Register",
     component: Register,
+  },
+  {
+    path: "/registesuccess",
+    name: "RegisterSuccess",
+    component: RegisterSuccess,
   },
   {
     path: "/task",

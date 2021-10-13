@@ -1,7 +1,7 @@
 <template>
 <div class="container d-flex justify-content-center">
     <div class="mt-5 col-10 ">
-        <h1 class="mb-5 text-center">Resgiter</h1>
+        <h1 class="mb-5 text-center">Register</h1>
         <div>
             <form>
                 <div class="mb-3">
@@ -63,8 +63,9 @@ export default {
             }, () => {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
-                        //document.getElementById("lineUid").innerHTML = 'UserId:<br>' + profile.userId;
-                        return this.form.lineUid = profile.userId;
+
+                        this.form.lineUid = profile.userId;
+                        return this.$router.push({ path: '/registersuccess'})
 
                     }).catch(
                         err => console.error(err)
