@@ -11,7 +11,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">รายละเอียด</label>
-                    <input type="tel" class="form-control" id="description" v-model="form.description">
+                    <input type="text" class="form-control" id="description" v-model="form.description">
                 </div>
 
                 <div class="mb-3">
@@ -69,7 +69,7 @@ export default {
                 createBy: '',
                 category: '',
 
-            },
+            }, 
             users: ''
 
         }
@@ -97,6 +97,7 @@ export default {
                 name
             }) => name === this.form.supervisor)
             this.form.assignBy = found.lineUid
+            
         },
         getUserProflie() {
             liff.init({
