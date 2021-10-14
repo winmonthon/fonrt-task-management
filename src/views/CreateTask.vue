@@ -51,6 +51,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
+import shortid from 'shortid'
 
 export default {
     name: 'Task',
@@ -76,16 +77,22 @@ export default {
     },
     methods: {
         async createTask() {
+            const taskId = shortid()
             await axios.post('https://task-mangement-api.herokuapp.com/task/line', {
                 title: this.form.title,
                 description: this.form.description,
                 dueDate: this.form.date,
                 createBy: this.form.createBy,
                 assignBy: this.form.assignBy,
-                category: this.form.category
-
+                category: this.form.category,
+                taskId: taskId
             })
-            alert('Create Success!!')
+            await axios.post('https://task-mangement-api.herokuapp.com/callback/task'),{
+                taskId: taskId,
+                assignBy: this.form.assignBy,
+                
+            }
+            alert('เพิ่มงานใหม่เรียบร้อบ คุณสามารถปิดหน้าต่างนี้ได้ทันที')
         },
         async getUsers() {
             const supervisor = await axios.get('https://task-mangement-api.herokuapp.com/users/role?role=supervisor')
