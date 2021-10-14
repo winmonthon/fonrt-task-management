@@ -1,5 +1,5 @@
 <template>
-<div class="container d-flex justify-content-center mb-5">
+<div class="container d-flex justify-content-center mt-5">
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">ลงทะเบียนเสร็จสิ้น</h4>
         <p>กรุณารอการอัพเดทจากผู้ดูแล</p>

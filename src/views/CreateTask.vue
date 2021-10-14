@@ -3,7 +3,7 @@
     <div class="mt-5 col-10 ">
         <h1 class="mb-5 text-center">New Task</h1>
         <div>
-            <form>
+            <form @submit.prevent="createTask()">
                 <div class="mb-3">
                     <label for="title" class="form-label">ชื่องาน</label>
                     <input type="text" class="form-control" id="title" v-model="form.title">
@@ -16,20 +16,30 @@
 
                 <div class="mb-3">
                     <label for="category" class="form-label">ประเภทงาน</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" v-model="form.category">
                         <option selected>เลือกประเภทงาน</option>
-                        <option value="ทำความสะอาด">ทำความสะอาด</option>
-                        <option value="ซ่อมบำรุง">ซ่อมบำรุง</option>
-                        <option value="ทั่วไป">ทั่วไป</option>
+                        <option>ทำความสะอาด</option>
+                        <option>ซ่อมบำรุง</option>
+                        <option>ทั่วไป</option>
                     </select>
-                    </div>
+                </div>
 
                 <div class="mb-3">
                     <label for="date" class="form-label">วันที่</label>
                     <input type="date" class="form-control" id="password" v-model="form.date">
                 </div>
 
-                <button type="submit" class="btn btn-primary" @click="createTask()">Submit</button>
+                <div class="mb-3">
+                    <label for="category" class="form-label">หัวหน้างานผู้รับผิดชอบ</label>
+                    <select class="form-select" aria-label="Default select example" v-model="form.supervisor" @change="addLineUid()">
+                        <!-- <option selected>เลือกหัวหน้างาน</option> -->
+                        <option v-for="(user,i) in users" :key="i">{{ user.name}}</option>
+
+                    </select>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
         </div>
@@ -41,15 +51,27 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
+
 export default {
     name: 'Task',
+    mounted() {
+        this.getUsers()
+        this.getUserProflie()
+
+    },
     data() {
         return {
             form: {
                 title: '',
                 description: '',
-                date: null
-            }
+                date: null,
+                assignBy: '',
+                createBy: '',
+                category: '',
+
+            },
+            users: ''
+
         }
     },
     methods: {
@@ -57,11 +79,43 @@ export default {
             await axios.post('http://localhost:3000/task', {
                 title: this.form.title,
                 description: this.form.description,
-                date: this.form.date,
-                lineUid: 'asdfasdf74123'
+                dueDate: this.form.date,
+                createBy: this.form.createBy,
+                assignBy: this.form.assignBy,
+                category: this.form.category
+
             })
             alert('Create Success!!')
+        },
+        async getUsers() {
+            const supervisor = await axios.get('http://localhost:3000/users/role?role=supervisor')
+            this.users = supervisor.data.data
+
+        },
+        async addLineUid() {
+            const found = await this.users.find(({
+                name
+            }) => name === this.form.supervisor)
+            this.form.assignBy = found.lineUid
+        },
+        getUserProflie() {
+            liff.init({
+                liffId: "1656467289-2Mq017bP"
+            }, () => {
+                if (liff.isLoggedIn()) {
+                    liff.getProfile().then(profile => {
+
+                        this.form.createBy = profile.userId;
+
+                    }).catch(
+                        err => console.error(err)
+                    );
+                } else {
+                    liff.login();
+                }
+            }, err => console.error(err.code, error.message));
         }
+
     }
 }
 </script>
