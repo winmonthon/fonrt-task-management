@@ -76,7 +76,7 @@ export default {
     },
     methods: {
         async createTask() {
-            await axios.post('http://localhost:3000/task', {
+            await axios.post('http://localhost:3000/task/line', {
                 title: this.form.title,
                 description: this.form.description,
                 dueDate: this.form.date,
@@ -100,7 +100,7 @@ export default {
         },
         getUserProflie() {
             liff.init({
-                liffId: "1656467289-2Mq017bP"
+                liffId: "1656467289-VZYx2BzW"
             }, () => {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
