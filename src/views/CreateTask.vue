@@ -87,7 +87,10 @@ export default {
 
             })
 
-            alert('เพิ่มงานใหม่เรียบร้อบ คุณสามารถปิดหน้าต่างนี้ได้ทันที')
+            alert('Create Success')
+             this.$router.push({
+                    path: '/createtasksuccess'
+                })
         },
         async getUsers() {
             const supervisor = await axios.get('https://task-mangement-api.herokuapp.com/users/role?role=supervisor')
