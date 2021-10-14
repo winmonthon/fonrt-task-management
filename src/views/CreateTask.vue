@@ -51,7 +51,6 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
-import shortid from 'shortid'
 
 export default {
     name: 'Task',
@@ -70,14 +69,14 @@ export default {
                 createBy: '',
                 category: '',
 
-            }, 
+            },
             users: ''
 
         }
     },
     methods: {
         async createTask() {
-            const taskId = shortid()
+
             await axios.post('https://task-mangement-api.herokuapp.com/task/line', {
                 title: this.form.title,
                 description: this.form.description,
@@ -85,13 +84,9 @@ export default {
                 createBy: this.form.createBy,
                 assignBy: this.form.assignBy,
                 category: this.form.category,
-                taskId: taskId
+
             })
-            await axios.post('https://task-mangement-api.herokuapp.com/callback/task'),{
-                taskId: taskId,
-                assignBy: this.form.assignBy,
-                
-            }
+
             alert('เพิ่มงานใหม่เรียบร้อบ คุณสามารถปิดหน้าต่างนี้ได้ทันที')
         },
         async getUsers() {
@@ -104,7 +99,7 @@ export default {
                 name
             }) => name === this.form.supervisor)
             this.form.assignBy = found.lineUid
-            
+
         },
         getUserProflie() {
             liff.init({
