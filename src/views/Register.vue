@@ -51,7 +51,7 @@ export default {
         async createUser() {
            
             try {
-                await axios.post('http://localhost:3000/users', {
+                await axios.post('https://task-mangement-api.herokuapp.com/users', {
                     name: this.form.name,
                    tel: this.form.tel,
                     password: this.form.password,

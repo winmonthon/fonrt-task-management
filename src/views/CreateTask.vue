@@ -76,7 +76,7 @@ export default {
     },
     methods: {
         async createTask() {
-            await axios.post('http://localhost:3000/task/line', {
+            await axios.post('https://task-mangement-api.herokuapp.com/task/line', {
                 title: this.form.title,
                 description: this.form.description,
                 dueDate: this.form.date,
@@ -88,7 +88,7 @@ export default {
             alert('Create Success!!')
         },
         async getUsers() {
-            const supervisor = await axios.get('http://localhost:3000/users/role?role=supervisor')
+            const supervisor = await axios.get('https://task-mangement-api.herokuapp.com/users/role?role=supervisor')
             this.users = supervisor.data.data
 
         },
