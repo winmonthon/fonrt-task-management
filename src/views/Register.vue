@@ -3,7 +3,7 @@
     <div class="mt-5 col-10 ">
         <h1 class="mb-5 text-center">Register</h1>
         <div>
-            <form>
+           <form @submit.prevent="createUser()">
                 <div class="mb-3">
                     <label for="name" class="form-label">ชื่อ-นามสกุล</label>
                     <input type="text" class="form-control" id="name" v-model="form.name">
@@ -19,8 +19,8 @@
                 </div>
                 <p id='lineUid'></p>
 
-                <button type="submit" class="btn btn-primary" @click="createUser()">Submit</button>
-            </form>
+                <button type="submit" class="btn btn-primary" >Submit</button>
+           </form>
 
         </div>
 
@@ -49,16 +49,22 @@ export default {
     },
     methods: {
         async createUser() {
-            await axios.post('http://localhost:3000/users', {
-                name: this.form.name,
-                tel: this.form.tel,
-                password: this.form.password,
-                lineUid: this.form.lineUid
-            })
-            alert('Create Success!!')
-            this.$router.push({
-                path: '/registersuccess'
-            })
+           
+            try {
+                await axios.post('http://localhost:3000/users', {
+                    name: this.form.name,
+                   tel: this.form.tel,
+                    password: this.form.password,
+                    lineUid: this.form.lineUid
+                })
+                alert('Create Success!!')
+               this.$router.push({
+                    path: '/registersuccess'
+                })
+            } catch (err) {
+                console.error(err)
+            }
+
         },
         getLineUid() {
             liff.init({
