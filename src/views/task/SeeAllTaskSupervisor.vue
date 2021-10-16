@@ -65,7 +65,7 @@ export default {
     mounted() {
         this.getUserProflie()
         this.getTasks()
-        console.log(this.lineUid)
+        console.log(this.form.lineUid)
 
     },
     filters: {
