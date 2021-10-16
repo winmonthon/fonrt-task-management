@@ -52,9 +52,9 @@ export default {
     name: 'SeeTaskSuperviosr',
     data() {
         return {
-            form: {
-                lineUid: ''
-            },
+           
+                lineUid: '',
+           
 
             allPages: '',
             currentPage: '',
@@ -65,7 +65,7 @@ export default {
     mounted() {
         this.getUserProflie()
         this.getTasks()
-        console.log(this.form.lineUid)
+        console.log(this.lineUid)
 
     },
     filters: {
@@ -79,7 +79,7 @@ export default {
     methods: {
 
         async getTasks() {
-            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.form.lineUid}`)
+            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
             console.log(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
             console.log(supervisorData)
             const userId = supervisorData.data.data.userId
@@ -103,7 +103,7 @@ export default {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
 
-                        this.form.lineUid = profile.userId;
+                        this.lineUid = profile.userId;
 
                     }).catch(
                         err => console.error(err)
