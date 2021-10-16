@@ -52,7 +52,7 @@ export default {
     name: 'SeeTaskSuperviosr',
     data() {
         return {
-            from: {
+            form: {
                 lineUid: ''
             },
 
