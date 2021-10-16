@@ -46,7 +46,7 @@ export default {
                 name: '',
                 tel: '',
                 password: null,
-                lineUid: 'U30918c965c0984fb90f0dca605c61617'
+                lineUid: ''
             },
             isTelTure: '',
             isUsers: ''
