@@ -92,14 +92,14 @@ export default {
             this.currentPage = data.data.currentPage
             console.log(data)
         },
-        getUserProflie() {
+        getUserProflie() { 
             liff.init({
                 liffId: "1656467289-nGazJYoB"
             }, () => {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
 
-                        this.form.lineUid = profile.userId;
+                        this.lineUid = profile.userId;
 
                     }).catch(
                         err => console.error(err)
