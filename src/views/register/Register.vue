@@ -1,9 +1,12 @@
 <template>
 <div class="container d-flex justify-content-center">
     <div class="mt-5 col-10 ">
-        <h1 class="mb-5 text-center">Register</h1>
+        <div class="mb-5">
+        <h1 class=" text-center">Register</h1>
+        <p class='text-danger fs-3 text-center'>{{isUsers}}</p>
+        </div>
         <div>
-           <form @submit.prevent="createUser()">
+           <form @submit.prevent="validate()">
                 <div class="mb-3">
                     <label for="name" class="form-label">ชื่อ-นามสกุล</label>
                     <input type="text" class="form-control" id="name" v-model="form.name">
@@ -12,12 +15,15 @@
                 <div class="mb-3">
                     <label for="tel" class="form-label">เบอร์โทรศัพท์</label>
                     <input type="tel" class="form-control" id="tel" v-model="form.tel">
+                    <p class='text-danger fs-6'>{{isTelTure}}</p>
+                    
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">รหัสผ่าน</label>
                     <input type="password" class="form-control" id="password" v-model="form.password">
+                    
                 </div>
-                <p id='lineUid'></p>
+                
 
                 <button type="submit" class="btn btn-primary" >Submit</button>
            </form>
@@ -40,8 +46,10 @@ export default {
                 name: '',
                 tel: '',
                 password: null,
-                lineUid: ''
-            }
+                lineUid: 'U30918c965c0984fb90f0dca605c61617'
+            },
+            isTelTure: '',
+            isUsers: ''
         }
     },
     mounted() {
@@ -82,6 +90,23 @@ export default {
                     liff.login();
                 }
             }, err => console.error(err.code, error.message));
+        },
+       async validate() {
+            const checkUsers = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.form.lineUid}`)
+            const phone = /[0]{1}[0-9]{9}/
+            
+            const isTel = phone.exec(this.form.tel)
+            if(!isTel ){
+               return this.isTelTure = 'หมายเลขโทรศัทพ์ไม่ถูกต้อง'
+                
+            } else if(checkUsers !== ''){
+                return this.isUsers = 'คุณมีบัญชีอยู่ในระบบเรียบร้อยแล้ว'
+            }
+            else {
+                this.isTelTure = ''
+              this.createUser()
+            }
+
         }
     }
 

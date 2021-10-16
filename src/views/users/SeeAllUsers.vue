@@ -1,0 +1,86 @@
+<template>
+<div class="container px-md-2 ">
+    <div class="mt-5  ">
+        <h1 class="mb-5 text-center">All Users</h1>
+        <div class='mb-3'>
+            <label class="col mb-1" for="">ค้นหา</label>
+            <input class="form-control col" type="text" placeholder="Default input" aria-label="default input example">
+        </div>
+
+        <div class="d-flex justify-content-end px-2">
+            <div>
+                <b>Page</b> <span>{{currentPage}}</span>
+            </div>
+        </div>
+        <div style="overflow-x:auto;">
+            <table class=" table">
+                <thead>
+                    <tr>
+                        <th scope="col">ชื่อ</th>
+                        <th scope="col">เบอร์โทรศัพท์</th>
+                        <th scope="col">ตำแหน่ง</th>
+                        <th scope="col"> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(user,i) in users" :key="i">
+                        <td>{{user.name}}</td>
+                        <td>{{user.tel}}</td>
+                        <td>{{user.role}}</td>
+                        <td><button type="button" @click="updateUser(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="btn-group me-2 d-flex justify-content-center" role="group" aria-label="Second group">
+
+            <div>
+                <button type="button" @click="changePage(i)" class="btn btn-sm btn-outline-secondary mx-2 mb-5" v-for="(page,i) in allPages" :key="i">{{i+1}}</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</template>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
+import axios from 'axios'
+
+export default {
+    name: 'SeeTask',
+    data() {
+        return {
+            users: '',
+            allPages: '',
+            currentPage: ''
+        }
+    },
+    mounted() {
+        this.getUsers()
+    },
+    methods: {
+        async getUsers() {
+            const allUsers = await axios.get('https://task-mangement-api.herokuapp.com/users')
+            console.log(allUsers)
+            this.users = allUsers.data.data
+            this.allPages = parseInt(allUsers.data.allPages)
+            this.currentPage = allUsers.data.currentPage
+        },
+        async changePage(index) {
+            const data = await axios.get(`https://task-mangement-api.herokuapp.com/users?page=${index+1}&size=10`)
+            this.users = data.data.data
+            this.currentPage = data.data.currentPage
+            console.log(data)
+        },
+        async updateUser(index) {
+            this.$router.push({
+                path: `/updateuser/${this.users[index].userId}`
+            })
+            console.log(index)
+        }
+    }
+
+}
+</script>
