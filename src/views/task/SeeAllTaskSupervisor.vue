@@ -52,8 +52,9 @@ export default {
     name: 'SeeTaskSuperviosr',
     data() {
         return {
-
-            lineUid: '',
+            from: {
+                lineUid: ''
+            },
 
             allPages: '',
             currentPage: '',
@@ -72,13 +73,13 @@ export default {
             if (!value) return ''
             console.log(value)
             return value
-            
+
         }
     },
     methods: {
 
         async getTasks() {
-            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
+            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.form.lineUid}`)
             console.log(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
             console.log(supervisorData)
             const userId = supervisorData.data.data.userId
@@ -89,21 +90,20 @@ export default {
             this.currentPage = tasks.data.currentPage
             this.userId = userId
         },
-         async changePage(index) {
+        async changePage(index) {
             const data = await axios.get(`https://task-mangement-api.herokuapp.com/task/supervisor/${this.userId}?page=${index+1}&size=10`)
             this.tasks = data.data.data
             this.currentPage = data.data.currentPage
             console.log(data)
         },
-        getUserProflie() { 
+        getUserProflie() {
             liff.init({
                 liffId: "1656467289-nGazJYoB"
             }, () => {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
 
-                     this.lineUid = profile.userId;
-                     
+                        this.form.lineUid = profile.userId;
 
                     }).catch(
                         err => console.error(err)
