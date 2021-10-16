@@ -52,9 +52,8 @@ export default {
     name: 'SeeTaskSuperviosr',
     data() {
         return {
-           
-                lineUid: '',
-           
+
+            lineUid: '',
 
             allPages: '',
             currentPage: '',
@@ -64,7 +63,7 @@ export default {
     },
     mounted() {
         this.getUserProflie()
-        this.getTasks()
+
         console.log(this.lineUid)
 
     },
@@ -103,8 +102,8 @@ export default {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
 
-                        this.lineUid = profile.userId;
-
+                        this.lineUid = profile.userId
+                        this.getTasks()
                     }).catch(
                         err => console.error(err)
                     );
