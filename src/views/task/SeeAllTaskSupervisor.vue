@@ -62,7 +62,7 @@ export default {
         }
     },
     mounted() {
-        // this.getUserProflie()
+        this.getUserProflie()
         this.getTasks()
 
     },
