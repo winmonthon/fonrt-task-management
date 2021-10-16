@@ -79,6 +79,7 @@ export default {
 
         async getTasks() {
             const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
+            console.log(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
             console.log(supervisorData)
             const userId = supervisorData.data.data.userId
             const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/supervisor/${userId}`)
@@ -102,7 +103,7 @@ export default {
                     liff.getProfile().then(profile => {
 
                      this.lineUid = profile.userId;
-                     console.log(profile.userId)
+                     
 
                     }).catch(
                         err => console.error(err)
