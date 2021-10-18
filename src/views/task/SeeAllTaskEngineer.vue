@@ -32,6 +32,7 @@
                         <td>{{task.category }}</td>
                         <td>{{task.taskStatus}}</td>
                         <td><button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
+                        <td><button type="button" @click="finishTask(i)" class="btn btn-sm btn-success">Finish</button></td>
                     </tr>
 
                 </tbody>
@@ -52,13 +53,16 @@
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
 
-
 export default {
     name: 'SeeTaskEngineer',
     data() {
         return {
-
-            lineUid: '',
+            form: {
+                assignBy: '',
+                taskId: '',
+                engineer: ''
+            },
+            lineUid: 'U30918c965c0984fb90f0dca605c61617',
 
             allPages: '',
             currentPage: '',
@@ -68,8 +72,8 @@ export default {
     },
     mounted() {
         this.getUserProflie()
-//this.getTasks()
-       // console.log(this.lineUid)
+        //this.getTasks()
+        // console.log(this.lineUid)
 
     },
     filters: {
@@ -93,6 +97,7 @@ export default {
             this.allPages = tasks.data.allPages
             this.currentPage = tasks.data.currentPage
             this.userId = userId
+
         },
         async changePage(index) {
             const data = await axios.get(`https://task-mangement-api.herokuapp.com/task/engineer/${this.userId}?page=${index+1}&size=10`)
@@ -100,14 +105,24 @@ export default {
             this.currentPage = data.data.currentPage
             console.log(data)
         },
-        async updateTask(index){
+        async updateTask(index) {
             this.$router.push({
                 path: `/task/engineer/edit/${this.tasks[index].taskId}`
             })
-           
+
+        },
+        async finishTask(index) {
+            await axios.post('https://task-mangement-api.herokuapp.com/task/finish', {
+                assignBy: this.tasks[index].assignBy.lineUid,
+                taskId: this.tasks[index].taskId,
+                engineer: this.tasks[index].engineer.lineUid
+
+            })
+
+            alert('Finished')
             
-        }
-        ,
+        },
+
         getUserProflie() {
             liff.init({
                 liffId: "1656467289-ymVgve5o"
