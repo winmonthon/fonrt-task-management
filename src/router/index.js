@@ -5,11 +5,16 @@ import Register from "../views/register/Register.vue"
 import CreateTask from "../views/task/CreateTask.vue"
 import Login from "../views/Login.vue"
 import SeeAllTaskSupervior from "../views/task/SeeAllTaskSupervisor.vue"
+import SeeAllTaskSale from "../views/task/SeeAllTaskSale.vue"
+import SeeAllTaskEngineer from "../views/task/SeeAllTaskEngineer.vue"
 import RegisterSuccess from "../views/register/RegisterSuccess.vue"
 import CreateTaskSuccess from "../views/task/CreateTaskSuccess.vue"
 import SeeAllusers from "../views/users/SeeAllUsers.vue"
 import UpdateUser from "../views/users/UpdateUser.vue"
 import PageNotFound from "../views/NotFound.vue"
+import UpdateTaskSupervisor from "../views/task/UpdateTaskSupervisor.vue"
+import UpdateTaksSale from "../views/task/UpdateTaskSale.vue"
+import UpdateTaskEngineer from "../views/task/UpdateTaskEngineer.vue"
 
 Vue.use(VueRouter)
 
@@ -30,9 +35,34 @@ const routes = [
     component: UpdateUser,
   },
   {
+    path: "/task/supervisor/edit/:taskId",
+    name: "UpdateTaskSupervisor",
+    component: UpdateTaskSupervisor,
+  },
+  {
+    path: "/task/engineer/edit/:taskId",
+    name: "UpdateTaskEngineer",
+    component: UpdateTaskEngineer,
+  },
+  {
+    path: "/task/sale/edit/:taskId",
+    name: "UpdateTaskSale",
+    component: UpdateTaksSale,
+  },
+  {
     path: "/task/supervisor",
     name: "SeeAllTaskSupervisor",
     component: SeeAllTaskSupervior,
+  },
+  {
+    path: "/task/engineer",
+    name: "SeeAllTaskEngineer",
+    component: SeeAllTaskEngineer,
+  },
+  {
+    path: "/task/sale",
+    name: "SeeAllTaskSale",
+    component: SeeAllTaskSale,
   },
 
   {
@@ -40,6 +70,7 @@ const routes = [
     name: "CreateTaskSuccess",
     component: CreateTaskSuccess,
   },
+
   {
     path: "/registersuccess",
     name: "RegisterSuccess",
