@@ -44,7 +44,8 @@ export default {
                 name: '',
                 tel: '',
                 role: '',
-                userId: ''
+                userId: '',
+                lineUid: ''
             },
             roleEnum: ['sale', 'engineer', 'supervisor'],
             selectedRole: 'test'
@@ -72,6 +73,7 @@ export default {
             this.form.name = user.data.data.name
             this.form.tel = user.data.data.tel
             this.form.role = user.data.data.role
+            this.form.lineUid = user.data.data.lineUid
 
         },
         async updateUser() {
@@ -80,6 +82,16 @@ export default {
                 tel: this.form.tel,
                 role: this.form.role.toLowerCase()
             })
+
+            await axios({
+                method: 'post',
+                url: `https://task-mangement-api.herokuapp.com/users/richmenu`,
+                data: {
+                    lineUid: this.form.lineUid,
+                    role: this.form.role
+                }
+            })
+
             alert('update success')
             this.$router.push({
                 path: `/users`

@@ -72,10 +72,10 @@ export default {
 
     },
     filters: {
-        toDate: function (value) {
+       toDate: function (value) {
             if (!value) return ''
             console.log(value)
-            return value
+            return dayjs(value).format('D MMM YYYY')
 
         }
     },

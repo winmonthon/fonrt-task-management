@@ -28,7 +28,7 @@
                     <tr v-for="(task,i) in tasks" :key="i">
                         <td>{{task.title}}</td>
                         <td>{{task.description}}</td>
-                        <td>{{task.dueDate |toDate }}</td>
+                        <td>{{task.dueDate | toDate}}</td>
                         <td>{{task.category }}</td>
                         <td>{{task.taskStatus}}</td>
                         <td><button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
@@ -52,6 +52,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 
 export default {
     name: 'SeeTaskEngineer',
@@ -80,7 +81,7 @@ export default {
         toDate: function (value) {
             if (!value) return ''
             console.log(value)
-            return value
+            return dayjs(value).format('D MMM YYYY')
 
         }
     },
