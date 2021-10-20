@@ -4,6 +4,7 @@ import VueRouter from "vue-router"
 import Register from "../views/register/Register.vue"
 import CreateTask from "../views/task/CreateTask.vue"
 import Login from "../views/Login.vue"
+import Logout from "../views/auth/Logout.vue"
 import SeeAllTaskSupervior from "../views/task/SeeAllTaskSupervisor.vue"
 import SeeAllTaskSale from "../views/task/SeeAllTaskSale.vue"
 import SeeAllTaskEngineer from "../views/task/SeeAllTaskEngineer.vue"
@@ -81,6 +82,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/logout",
+    name: "Logout",
+    component: Logout,
   },
   {
     path: "/task",

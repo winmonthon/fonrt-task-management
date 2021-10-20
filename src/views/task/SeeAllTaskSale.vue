@@ -28,7 +28,8 @@
                     <tr v-for="(task,i) in tasks" :key="i">
                         <td>{{task.title}}</td>
                         <td>{{task.description}}</td>
-                        <td>{{task.dueDate |toDate }}</td>
+                        <td>{{task.startDate | toDate}}</td>
+                        <td>{{task.endDate  | toDate}}</td>
                         <td>{{task.category }}</td>
                         <td>{{task.taskStatus}}</td>
                         <td><button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
@@ -48,16 +49,16 @@
 
 </div>
 </template>
-<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script><script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 export default {
-    name: 'SeeAllTaskSale'
-    ,
+    name: 'SeeAllTaskSale',
     data() {
         return {
 
-            lineUid: '',
+            lineUid: 'U30918c965c0984fb90f0dca605c61617',
 
             allPages: '',
             currentPage: '',
@@ -67,12 +68,12 @@ export default {
     },
     mounted() {
         this.getUserProflie()
-//this.getTasks()
-       // console.log(this.lineUid)
+        // this.getTasks()
+        // console.log(this.lineUid)
 
     },
     filters: {
-       toDate: function (value) {
+        toDate: function (value) {
             if (!value) return ''
             console.log(value)
             return dayjs(value).format('D MMM YYYY')
@@ -99,17 +100,15 @@ export default {
             this.currentPage = data.data.currentPage
             console.log(data)
         },
-        async updateTask(index){
+        async updateTask(index) {
             this.$router.push({
                 path: `/task/sale/edit/${this.tasks[index].taskId}`
             })
-           
-            
-        }
-        ,
+
+        },
         getUserProflie() {
             liff.init({
-                liffId: "1656467289-nGazJYoB"
+                liffId: "1656467289-P9pvaGzk"
             }, () => {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {

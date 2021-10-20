@@ -88,7 +88,7 @@ export default {
             this.form.title = task.data.data.title
             this.form.description = task.data.data.description
             this.form.category = task.data.data.category
-            this.form.date = task.data.data.dueDate
+            this.form.date = task.data.data.endDate
             this.form.taskStatus = task.data.data.taskStatus
 
         },

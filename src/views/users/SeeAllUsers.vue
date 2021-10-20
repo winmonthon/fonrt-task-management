@@ -54,7 +54,8 @@ export default {
         return {
             users: '',
             allPages: '',
-            currentPage: ''
+            currentPage: '',
+            size: ''
         }
     },
     mounted() {
@@ -62,17 +63,46 @@ export default {
     },
     methods: {
         async getUsers() {
-            const allUsers = await axios.get('https://task-mangement-api.herokuapp.com/users')
-            console.log(allUsers)
-            this.users = allUsers.data.data
-            this.allPages = parseInt(allUsers.data.allPages)
-            this.currentPage = allUsers.data.currentPage
+             try {
+                const allUsers = await axios({
+                    method: 'get',
+                    url: `https://task-mangement-api.herokuapp.com/users`,
+                    headers: {
+                        Authorization: `Bearer ${this.$store.state.token}`,
+                    },
+                })
+                
+                if (allUsers.data.message === 'Role Unauthorized') {
+                    alert('คุณไม่ได้รับอุณญาติให้เข้าถึงข้อมูลนี้')
+                    this.$router.push({
+                        path: `/login`
+                    })
+                } else if (allUsers.data.message === 'token require' || allUsers.data.message === 'token expired') {
+                    this.$router.push({
+                        path: `/login`
+                    })
+                }
+
+                this.users = allUsers.data.data
+                this.allPages = parseInt(allUsers.data.allPages)
+                this.currentPage = allUsers.data.currentPage
+            } catch (error) {
+                console.error('error',error)
+            }
+
         },
         async changePage(index) {
-            const data = await axios.get(`https://task-mangement-api.herokuapp.com/users?page=${index+1}&size=10`)
+            const data = await axios({
+                method: 'get',
+                url: `https://task-mangement-api.herokuapp.com/users?page=${index+1}&size=10`,
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.token}`,
+                },
+            })
+
             this.users = data.data.data
             this.currentPage = data.data.currentPage
-            console.log(data)
+
         },
         async updateUser(index) {
             this.$router.push({

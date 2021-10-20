@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="date" class="form-label">วันที่</label>
+                    <label for="date" class="form-label">วันที่สิ้นสุดงาน</label>
                     <input type="date" class="form-control" id="password" v-model="form.date">
                 </div>
 
@@ -88,7 +88,7 @@ export default {
             this.form.title = task.data.data.title
             this.form.description = task.data.data.description
             this.form.category = task.data.data.category
-            this.form.date = task.data.data.dueDate
+            this.form.date = task.data.data.endDate
             this.form.taskStatus = task.data.data.taskStatus
 
         },

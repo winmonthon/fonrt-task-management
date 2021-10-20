@@ -28,7 +28,8 @@
                     <tr v-for="(task,i) in tasks" :key="i">
                         <td>{{task.title}}</td>
                         <td>{{task.description}}</td>
-                        <td>{{task.dueDate | toDate}}</td>
+                        <td>{{task.startDate | toDate}}</td>
+                        <td>{{task.endDate | toDate}}</td>
                         <td>{{task.category }}</td>
                         <td>{{task.taskStatus}}</td>
                         <td><button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>

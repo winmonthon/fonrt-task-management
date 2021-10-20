@@ -25,8 +25,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="date" class="form-label">วันที่</label>
-                    <input type="date" class="form-control" id="password" v-model="form.date">
+                    <label for="date" class="form-label">วันที่เริ่มต้นงาน</label>
+                    <input type="date" class="form-control" id="startDate" v-model="form.startDate">
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">วันที่สิ้นสุดงาน</label>
+                    <input type="date" class="form-control" id="endDate" v-model="form.endDate">
                 </div>
 
                 <div class="mb-3">
@@ -64,7 +68,8 @@ export default {
             form: {
                 title: '',
                 description: '',
-                date: null,
+                startDate: null,
+                endDate: null,
                 assignBy: '',
                 createBy: '',
                 category: '',
@@ -80,7 +85,8 @@ export default {
             await axios.post('https://task-mangement-api.herokuapp.com/task/line', {
                 title: this.form.title,
                 description: this.form.description,
-                dueDate: this.form.date,
+                startDate: this.form.startDate,
+                endDate: this.form.endDate,
                 createBy: this.form.createBy,
                 assignBy: this.form.assignBy,
                 category: this.form.category,
