@@ -45,14 +45,14 @@ export default {
                 name: '',
                 tel: '',
                 password: null,
-                lineUid: 'asdfasdfasfasdf'
+                lineUid: ''
             },
             isTelTure: '',
             isUsers: ''
         }
     },
     mounted() {
-       // this.getLineUid()
+        this.getLineUid()
     },
     methods: {
         async createUser() {
@@ -91,6 +91,8 @@ export default {
             }, err => console.error(err.code, error.message));
         },
         async validate() {
+            this.isTelTure = ''
+            this.isUsers = ''
             const checkUsers = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.form.lineUid}`)
             const checkTel = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/tel/${this.form.tel}`)
             const phone = /[0]{1}[0-9]{9}/
@@ -103,6 +105,7 @@ export default {
                 return this.isUsers = 'คุณมีบัญชีอยู่ในระบบเรียบร้อยแล้ว'
             } else {
                 this.isTelTure = ''
+                this.isUsers= ''
                 this.createUser()
             }
 
