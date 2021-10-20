@@ -31,8 +31,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="date" class="form-label">วันที่</label>
-                    <input type="date" class="form-control" id="password" v-model="form.date">
+                    <label for="date" class="form-label">กำหนดส่งวันที่</label>
+                    <input type="date" class="form-control" id="password" v-model="form.endDate">
                 </div>
 
                 <button type="submit " class="btn btn-primary ">Submit</button>
@@ -55,7 +55,7 @@ export default {
             form: {
                 title: '',
                 description: '',
-                date: null,
+                endDate: null,
                 taskStatus: '',
 
                 category: '',
@@ -88,7 +88,7 @@ export default {
             this.form.title = task.data.data.title
             this.form.description = task.data.data.description
             this.form.category = task.data.data.category
-            this.form.date = task.data.data.dueDate
+            this.form.endDate = task.data.data.endDate
             this.form.taskStatus = task.data.data.taskStatus
 
         },
@@ -100,7 +100,7 @@ export default {
                 dueDate: this.form.date
             })
             alert('Update success')
-          this.$router.push({
+            this.$router.push({
                 path: `/task/sale/`
             })
         },
