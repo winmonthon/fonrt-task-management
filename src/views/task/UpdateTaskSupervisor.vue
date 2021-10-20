@@ -47,6 +47,7 @@
 
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 export default {
 
     name: 'UpdateTaskSupervisor',
@@ -88,7 +89,7 @@ export default {
             this.form.title = task.data.data.title
             this.form.description = task.data.data.description
             this.form.category = task.data.data.category
-            this.form.date = task.data.data.endDate
+            this.form.date = dayjs(task.data.data.endDate).format('YYYY-MM-DD')
             this.form.taskStatus = task.data.data.taskStatus
 
         },
@@ -100,7 +101,7 @@ export default {
                 dueDate: this.form.date
             })
             alert('Update success')
-          this.$router.push({
+            this.$router.push({
                 path: `/task/supervisor/`
             })
         },

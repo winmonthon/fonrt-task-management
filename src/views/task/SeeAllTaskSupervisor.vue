@@ -114,6 +114,10 @@ export default {
                     liff.getProfile().then(profile => {
 
                         this.lineUid = profile.userId
+                        this.$store.dispatch('lineLogIn', {
+                            lineUid: profile.userId
+                        })
+
                         this.getTasks()
                     }).catch(
                         err => console.error(err)

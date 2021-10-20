@@ -47,6 +47,8 @@
 
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
+
 export default {
 
     name: 'UpdateTaskSale',
@@ -88,7 +90,7 @@ export default {
             this.form.title = task.data.data.title
             this.form.description = task.data.data.description
             this.form.category = task.data.data.category
-            this.form.endDate = task.data.data.endDate
+            this.form.endDate = dayjs(task.data.data.endDate).format('YYYY-MM-DD')
             this.form.taskStatus = task.data.data.taskStatus
 
         },

@@ -91,7 +91,7 @@ export default {
 
         async getTasks() {
             const engineerData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.lineUid}`)
-            
+
             const userId = engineerData.data.data.userId
             const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/engineer/${userId}`)
             console.log(tasks)
@@ -122,7 +122,7 @@ export default {
             })
 
             alert('Finished')
-            
+
         },
 
         getUserProflie() {
@@ -133,7 +133,13 @@ export default {
                     liff.getProfile().then(profile => {
 
                         this.lineUid = profile.userId
+
+                        this.$store.dispatch('lineLogIn', {
+                            lineUid: profile.userId
+                        })
+
                         this.getTasks()
+
                     }).catch(
                         err => console.error(err)
                     );
