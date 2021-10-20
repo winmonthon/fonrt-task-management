@@ -59,7 +59,7 @@ export default {
     data() {
         return {
 
-            lineUid: 'U30918c965c0984fb90f0dca605c61617',
+            lineUid: '',
 
             allPages: '',
             currentPage: '',
@@ -114,6 +114,11 @@ export default {
                     liff.getProfile().then(profile => {
 
                         this.lineUid = profile.userId
+                        this.$store.dispatch('lineLogIn', {
+                                lineUid: profile.userId
+                            }
+
+                        )
                         this.getTasks()
                     }).catch(
                         err => console.error(err)

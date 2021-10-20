@@ -94,9 +94,9 @@ export default {
             })
 
             alert('Create Success')
-             this.$router.push({
-                    path: '/createtasksuccess'
-                })
+            this.$router.push({
+                path: '/createtasksuccess'
+            })
         },
         async getUsers() {
             const supervisor = await axios.get('https://task-mangement-api.herokuapp.com/users/role?role=supervisor')

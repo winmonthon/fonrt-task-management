@@ -20,6 +20,7 @@
                         <th scope="col">เบอร์โทรศัพท์</th>
                         <th scope="col">ตำแหน่ง</th>
                         <th scope="col"> </th>
+                        <th scope="col"> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,7 @@
                         <td>{{user.tel}}</td>
                         <td>{{user.role}}</td>
                         <td><button type="button" @click="updateUser(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
+                        <td><button type="button" @click="deleteUser(i)" class="btn btn-sm btn-outline-danger">Delete</button></td>
                     </tr>
 
                 </tbody>
@@ -54,33 +56,32 @@ export default {
         return {
             users: '',
             allPages: '',
-            currentPage: '',
+            currentPage: '1',
             size: ''
         }
     },
     mounted() {
         this.getUsers()
+        this.checkLogin()
     },
+
     methods: {
         async getUsers() {
             try {
                 const allUsers = await axios({
                     method: 'get',
-                    url: `https://task-mangement-api.herokuapp.com/users`,
+                    url: `https://task-mangement-api.herokuapp.com/users/?page=${this.currentPage}&size=10`,
                     headers: {
                         Authorization: `Bearer ${this.$store.state.token}`,
                     },
                 })
-                
-
-              
 
                 if (allUsers.data.message === 'Role Unauthorized') {
                     alert('คุณไม่ได้รับอุณญาติให้เข้าถึงข้อมูลนี้')
                     this.$router.push({
                         path: `/login`
                     })
-                } else if (allUsers.data.message === 'token require' || allUsers.data.message === 'token expired' ) {
+                } else if (allUsers.data.message === 'token require' || allUsers.data.message === 'token expired') {
                     this.$router.push({
                         path: `/login`
                     })
@@ -107,11 +108,32 @@ export default {
             this.currentPage = data.data.currentPage
 
         },
+        async deleteUser(index) {
+            confirm(`คุณต้องการลบ ${this.users[index].name} หรือไม่`)
+            await axios({
+                method: 'delete',
+                url: `https://task-mangement-api.herokuapp.com/users/${this.users[index].userId}`,
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.token}`,
+                },
+            })
+            await this.getUsers()
+
+        },
         async updateUser(index) {
             this.$router.push({
                 path: `/updateuser/${this.users[index].userId}`
             })
             console.log(index)
+        },
+        checkLogin() {
+            if (!this.$store.getters.loggedIn) {
+                this.$router.push({
+                    path: `/login`
+                })
+            } else {
+                return null
+            }
         }
     }
 
