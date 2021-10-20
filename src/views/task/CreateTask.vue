@@ -119,6 +119,10 @@ export default {
 
                         this.form.createBy = profile.userId;
 
+                        this.$store.dispatch('lineLogIn', {
+                            lineUid: profile.userId
+                        })
+
                     }).catch(
                         err => console.error(err)
                     );
