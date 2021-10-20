@@ -19,7 +19,7 @@ export default {
             return this.$store.getters.lineLoggedIn
         }
     },
-   
+
 }
 </script>
 
