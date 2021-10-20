@@ -33,7 +33,7 @@
                         <td>{{task.endDate | toDate}}</td>
                         <td>{{task.category }}</td>
                         <td>{{task.taskStatus}}</td>
-                        <td><button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
+                        <td><button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Update</button></td>
                         <td><button type="button" @click="finishTask(i)" class="btn btn-sm btn-success">Finish</button></td>
                     </tr>
 

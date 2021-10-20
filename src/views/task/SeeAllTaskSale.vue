@@ -18,6 +18,7 @@
                     <tr>
                         <th scope="col">งาน</th>
                         <th scope="col">รายละเอียด</th>
+                        <th scope="col">กำหนดเริ่ม</th>
                         <th scope="col">กำหนดส่ง</th>
                         <th scope="col">ประเภท</th>
                         <th scope="col">สถานะงาน </th>
@@ -29,7 +30,7 @@
                         <td>{{task.title}}</td>
                         <td>{{task.description}}</td>
                         <td>{{task.startDate | toDate}}</td>
-                        <td>{{task.endDate  | toDate}}</td>
+                        <td>{{task.endDate | toDate}}</td>
                         <td>{{task.category }}</td>
                         <td>{{task.taskStatus}}</td>
                         <td><button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
@@ -84,7 +85,7 @@ export default {
 
         async getTasks() {
             const saleData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.lineUid}`)
-            
+
             const userId = saleData.data.data.userId
             const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/sale/${userId}`)
             console.log(tasks)

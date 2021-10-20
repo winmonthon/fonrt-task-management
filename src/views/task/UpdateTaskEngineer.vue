@@ -64,7 +64,7 @@ export default {
             taskId: '',
             task: '',
             categoryEnum: ['ทำความสะอาด', 'ซ่อมบำรุง', 'ทั่วไป'],
-            taskStatusEnum: ['progress', 'pending', 'resolved']
+            taskStatusEnum: ['progress', 'pending']
         }
 
     },
