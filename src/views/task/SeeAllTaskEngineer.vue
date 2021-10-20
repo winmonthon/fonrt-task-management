@@ -18,6 +18,7 @@
                     <tr>
                         <th scope="col">งาน</th>
                         <th scope="col">รายละเอียด</th>
+                        <th scope="col">กำหนดเริ่ม</th>
                         <th scope="col">กำหนดส่ง</th>
                         <th scope="col">ประเภท</th>
                         <th scope="col">สถานะงาน </th>
@@ -89,10 +90,9 @@ export default {
     methods: {
 
         async getTasks() {
-            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
-            console.log(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
-            console.log(supervisorData)
-            const userId = supervisorData.data.data.userId
+            const engineerData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.lineUid}`)
+            
+            const userId = engineerData.data.data.userId
             const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/engineer/${userId}`)
             console.log(tasks)
             this.tasks = tasks.data.data

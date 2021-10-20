@@ -18,6 +18,7 @@
                     <tr>
                         <th scope="col">งาน</th>
                         <th scope="col">รายละเอียด</th>
+                        <th scope="col">กำหนดเริ่ม</th>
                         <th scope="col">กำหนดส่ง</th>
                         <th scope="col">ประเภท</th>
                         <th scope="col">สถานะงาน </th>
@@ -69,12 +70,12 @@ export default {
     },
     mounted() {
         this.getUserProflie()
-//this.getTasks()
-       // console.log(this.lineUid)
+        //this.getTasks()
+        // console.log(this.lineUid)
 
     },
     filters: {
-       toDate: function (value) {
+        toDate: function (value) {
             if (!value) return ''
             console.log(value)
             return dayjs(value).format('D MMM YYYY')
@@ -84,9 +85,7 @@ export default {
     methods: {
 
         async getTasks() {
-            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
-            console.log(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
-            console.log(supervisorData)
+            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.lineUid}`)
             const userId = supervisorData.data.data.userId
             const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/supervisor/${userId}`)
             console.log(tasks)
@@ -101,14 +100,12 @@ export default {
             this.currentPage = data.data.currentPage
             console.log(data)
         },
-        async updateTask(index){
+        async updateTask(index) {
             this.$router.push({
                 path: `/task/supervisor/edit/${this.tasks[index].taskId}`
             })
-           
-            
-        }
-        ,
+
+        },
         getUserProflie() {
             liff.init({
                 liffId: "1656467289-nGazJYoB"

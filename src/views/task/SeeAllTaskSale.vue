@@ -83,10 +83,9 @@ export default {
     methods: {
 
         async getTasks() {
-            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
-            console.log(`https://task-mangement-api.herokuapp.com/users/check/${this.lineUid}`)
-            console.log(supervisorData)
-            const userId = supervisorData.data.data.userId
+            const saleData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.lineUid}`)
+            
+            const userId = saleData.data.data.userId
             const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/sale/${userId}`)
             console.log(tasks)
             this.tasks = tasks.data.data

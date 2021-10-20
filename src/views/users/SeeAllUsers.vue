@@ -63,7 +63,7 @@ export default {
     },
     methods: {
         async getUsers() {
-             try {
+            try {
                 const allUsers = await axios({
                     method: 'get',
                     url: `https://task-mangement-api.herokuapp.com/users`,
@@ -72,12 +72,15 @@ export default {
                     },
                 })
                 
+
+              
+
                 if (allUsers.data.message === 'Role Unauthorized') {
                     alert('คุณไม่ได้รับอุณญาติให้เข้าถึงข้อมูลนี้')
                     this.$router.push({
                         path: `/login`
                     })
-                } else if (allUsers.data.message === 'token require' || allUsers.data.message === 'token expired') {
+                } else if (allUsers.data.message === 'token require' || allUsers.data.message === 'token expired' ) {
                     this.$router.push({
                         path: `/login`
                     })
@@ -87,7 +90,7 @@ export default {
                 this.allPages = parseInt(allUsers.data.allPages)
                 this.currentPage = allUsers.data.currentPage
             } catch (error) {
-                console.error('error',error)
+                console.error('error', error)
             }
 
         },
