@@ -1,24 +1,28 @@
 <template>
-<div id="app">
-    <navbar />
+<div id='app'>
+    <Navbar />
     <router-view />
 </div>
 </template>
 
 <script>
-import navbar from '../src/components/navbar.vue'
+import Navbar from '../src/components/navbar.vue'
 
 export default {
     name: 'App',
     components: {
-        navbar
-    }
-}
+        Navbar
+    },
+    data: () => ({
+        //
+    }),
+};
 </script>
 
-<style>
+<style >
 #app {
     font-family: 'Prompt', sans-serif;
-
 }
 </style>
+
+

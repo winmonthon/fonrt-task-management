@@ -80,7 +80,11 @@ export default {
                 if (liff.isLoggedIn()) {
                     liff.getProfile().then(profile => {
 
-                        this.form.lineUid = profile.userId;
+                        this.form.lineUid = profile.userId
+
+                          this.$store.dispatch('lineLogIn', {
+                            lineUid: profile.userId
+                        })
 
                     }).catch(
                         err => console.error(err)
