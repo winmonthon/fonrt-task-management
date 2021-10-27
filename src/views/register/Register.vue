@@ -19,9 +19,13 @@
 
                 </div>
                 <div class="mb-3">
+                    <label for="email" class="form-label">อีเมล</label>
+                    <input type="email" class="form-control" id="email" v-model="form.email">
+                </div>
+
+                <div class="mb-3">
                     <label for="password" class="form-label">รหัสผ่าน</label>
                     <input type="password" class="form-control" id="password" v-model="form.password">
-
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -45,7 +49,8 @@ export default {
                 name: '',
                 tel: '',
                 password: null,
-                lineUid: ''
+                lineUid: '',
+                email: ''
             },
             isTelTure: '',
             isUsers: ''
@@ -62,7 +67,8 @@ export default {
                     name: this.form.name,
                     tel: this.form.tel,
                     password: this.form.password,
-                    lineUid: this.form.lineUid
+                    lineUid: this.form.lineUid,
+                    email: this.form.email
                 })
                 alert('Create Success!!')
                 this.$router.push({
@@ -81,8 +87,6 @@ export default {
                     liff.getProfile().then(profile => {
 
                         this.form.lineUid = profile.userId
-
-                        
 
                     }).catch(
                         err => console.error(err)
@@ -107,7 +111,7 @@ export default {
                 return this.isUsers = 'คุณมีบัญชีอยู่ในระบบเรียบร้อยแล้ว'
             } else {
                 this.isTelTure = ''
-                this.isUsers= ''
+                this.isUsers = ''
                 this.createUser()
             }
 

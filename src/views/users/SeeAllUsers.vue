@@ -18,6 +18,7 @@
                     <tr>
                         <th scope="col">ชื่อ</th>
                         <th scope="col">เบอร์โทรศัพท์</th>
+                        <th scope="col">อีเมล</th>
                         <th scope="col">ตำแหน่ง</th>
                         <th scope="col"> </th>
                         <th scope="col"> </th>
@@ -27,6 +28,7 @@
                     <tr v-for="(user,i) in users" :key="i">
                         <td>{{user.name}}</td>
                         <td>{{user.tel}}</td>
+                        <td>{{user.email}}</td>
                         <td>{{user.role}}</td>
                         <td><button type="button" @click="updateUser(i)" class="btn btn-sm btn-outline-secondary">Edit</button></td>
                         <td><button type="button" @click="deleteUser(i)" class="btn btn-sm btn-outline-danger">Delete</button></td>
