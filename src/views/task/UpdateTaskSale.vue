@@ -65,7 +65,7 @@ export default {
             },
             taskId: '',
             task: '',
-            categoryEnum: ['ทำความสะอาด', 'ซ่อมบำรุง', 'ทั่วไป'],
+            categoryEnum: ['Claim', 'Demon', 'Interna', 'MSSP Implement', 'Sub-Contractor Service'],
             taskStatusEnum: ['progress', 'pending', 'resolved']
         }
 

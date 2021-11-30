@@ -17,10 +17,11 @@
                 <div class="mb-3">
                     <label for="category" class="form-label">ประเภทงาน</label>
                     <select class="form-select" aria-label="Default select example" v-model="form.category">
-                        <option selected>เลือกประเภทงาน</option>
-                        <option>ทำความสะอาด</option>
-                        <option>ซ่อมบำรุง</option>
-                        <option>ทั่วไป</option>
+                        <option selected>Claim</option>
+                        <option>Demo</option>
+                        <option>Internal</option>
+                        <option>MSSP Implement</option>
+                        <option>Sub-Contractor Service</option>
                     </select>
                 </div>
 
