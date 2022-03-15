@@ -68,7 +68,7 @@ export default {
 
             const userId = this.$route.params.id
             this.form.userId = userId
-            const user = await axios.get(`https://task-mangement-api.herokuapp.com/users/${userId}`)
+            const user = await axios.get(`${process.env.VUE_APP_API}/users/${userId}`)
             console.log(user)
             this.form.name = user.data.data.name
             this.form.tel = user.data.data.tel
@@ -77,7 +77,7 @@ export default {
 
         },
         async updateUser() {
-            await axios.put(`https://task-mangement-api.herokuapp.com/users/${this.form.userId}`, {
+            await axios.put(`${process.env.VUE_APP_API}/users/${this.form.userId}`, {
                 name: this.form.name,
                 tel: this.form.tel,
                 role: this.form.role.toLowerCase()
@@ -85,7 +85,7 @@ export default {
 
             await axios({
                 method: 'post',
-                url: `https://task-mangement-api.herokuapp.com/users/richmenu`,
+                url: `${process.env.VUE_APP_API}/users/richmenu`,
                 data: {
                     lineUid: this.form.lineUid,
                     role: this.form.role

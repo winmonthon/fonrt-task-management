@@ -85,9 +85,9 @@ export default {
     methods: {
 
         async getTasks() {
-            const supervisorData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.lineUid}`)
+            const supervisorData = await axios.get(`${process.env.VUE_APP_API}/users/check/lineuid/${this.lineUid}`)
             const userId = supervisorData.data.data.userId
-            const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/supervisor/${userId}`)
+            const tasks = await axios.get(`${process.env.VUE_APP_API}/task/supervisor/${userId}`)
             console.log(tasks)
             this.tasks = tasks.data.data
             this.allPages = tasks.data.allPages
@@ -95,7 +95,7 @@ export default {
             this.userId = userId
         },
         async changePage(index) {
-            const data = await axios.get(`https://task-mangement-api.herokuapp.com/task/supervisor/${this.userId}?page=${index+1}&size=10`)
+            const data = await axios.get(`${process.env.VUE_APP_API}/task/supervisor/${this.userId}?page=${index+1}&size=10`)
             this.tasks = data.data.data
             this.currentPage = data.data.currentPage
             console.log(data)

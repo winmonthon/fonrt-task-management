@@ -63,7 +63,7 @@ export default {
         async createUser() {
 
             try {
-                await axios.post('https://task-mangement-api.herokuapp.com/users', {
+                await axios.post(`${process.env.VUE_APP_API}/users`, {
                     name: this.form.name,
                     tel: this.form.tel,
                     password: this.form.password,
@@ -99,15 +99,16 @@ export default {
         async validate() {
             this.isTelTure = ''
             this.isUsers = ''
-            const checkUsers = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.form.lineUid}`)
-            const checkTel = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/tel/${this.form.tel}`)
+            const checkUsers = await axios.get(`${process.env.VUE_APP_API}/users/check/lineuid/${this.form.lineUid}`)
+            const checkTel = await axios.get(`${process.env.VUE_APP_API}/users/check/tel/${this.form.tel}`)
             const phone = /[0]{1}[0-9]{9}/
 
             const isTel = phone.exec(this.form.tel)
             if (!isTel) {
                 return this.isTelTure = 'หมายเลขโทรศัทพ์ไม่ถูกต้อง'
-
-            } else if (checkUsers.data.data !== null || checkTel.data.data !== null) {
+            } 
+            
+            if (checkUsers.data.data !== null || checkTel.data.data !== null) {
                 return this.isUsers = 'คุณมีบัญชีอยู่ในระบบเรียบร้อยแล้ว'
             } else {
                 this.isTelTure = ''

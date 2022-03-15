@@ -72,7 +72,7 @@ export default {
             try {
                 const allUsers = await axios({
                     method: 'get',
-                    url: `https://task-mangement-api.herokuapp.com/users/?page=${this.currentPage}&size=10`,
+                    url: `${process.env.VUE_APP_API}/users/?page=${this.currentPage}&size=10`,
                     headers: {
                         Authorization: `Bearer ${this.$store.state.token}`,
                     },
@@ -100,7 +100,7 @@ export default {
         async changePage(index) {
             const data = await axios({
                 method: 'get',
-                url: `https://task-mangement-api.herokuapp.com/users?page=${index+1}&size=10`,
+                url: `${process.env.VUE_APP_API}/users?page=${index+1}&size=10`,
                 headers: {
                     Authorization: `Bearer ${this.$store.state.token}`,
                 },
@@ -114,7 +114,7 @@ export default {
             confirm(`คุณต้องการลบ ${this.users[index].name} หรือไม่`)
             await axios({
                 method: 'delete',
-                url: `https://task-mangement-api.herokuapp.com/users/${this.users[index].userId}`,
+                url: `${process.env.VUE_APP_API}/users/${this.users[index].userId}`,
                 headers: {
                     Authorization: `Bearer ${this.$store.state.token}`,
                 },

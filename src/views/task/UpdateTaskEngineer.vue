@@ -83,7 +83,7 @@ export default {
         async getTask() {
             const taskId = this.$route.params.taskId
             this.taskId = taskId
-            const task = await axios.get(`https://task-mangement-api.herokuapp.com/task/${taskId}`)
+            const task = await axios.get(`${process.env.VUE_APP_API}/task/${taskId}`)
             console.log(task)
             this.task = task
             this.form.title = task.data.data.title
@@ -94,7 +94,7 @@ export default {
 
         },
         async updateTask() {
-            await axios.put(`https://task-mangement-api.herokuapp.com/task/${this.taskId}`, {
+            await axios.put(`${process.env.VUE_APP_API}/task/${this.taskId}`, {
                 title: this.form.title,
                 description: this.form.description,
                 taskStatus: this.form.taskStatus.toLowerCase(),

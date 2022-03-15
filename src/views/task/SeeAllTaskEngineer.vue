@@ -90,10 +90,10 @@ export default {
     methods: {
 
         async getTasks() {
-            const engineerData = await axios.get(`https://task-mangement-api.herokuapp.com/users/check/lineuid/${this.lineUid}`)
+            const engineerData = await axios.get(`${process.env.VUE_APP_API}/users/check/lineuid/${this.lineUid}`)
 
             const userId = engineerData.data.data.userId
-            const tasks = await axios.get(`https://task-mangement-api.herokuapp.com/task/engineer/${userId}`)
+            const tasks = await axios.get(`${process.env.VUE_APP_API}/task/engineer/${userId}`)
             console.log(tasks)
             this.tasks = tasks.data.data
             this.allPages = tasks.data.allPages
@@ -102,7 +102,7 @@ export default {
 
         },
         async changePage(index) {
-            const data = await axios.get(`https://task-mangement-api.herokuapp.com/task/engineer/${this.userId}?page=${index+1}&size=10`)
+            const data = await axios.get(`${process.env.VUE_APP_API}/task/engineer/${this.userId}?page=${index+1}&size=10`)
             this.tasks = data.data.data
             this.currentPage = data.data.currentPage
             console.log(data)
@@ -114,7 +114,7 @@ export default {
 
         },
         async finishTask(index) {
-            await axios.post('https://task-mangement-api.herokuapp.com/task/finish', {
+            await axios.post(`${process.env.VUE_APP_API}/task/finish`, {
                 assignBy: this.tasks[index].assignBy.lineUid,
                 taskId: this.tasks[index].taskId,
                 engineer: this.tasks[index].engineer.lineUid
