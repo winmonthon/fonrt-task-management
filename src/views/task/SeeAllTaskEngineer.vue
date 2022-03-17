@@ -1,7 +1,11 @@
 <template>
 <div class="container px-md-2 ">
     <div class="mt-5  ">
-        <h1 class="mb-5 text-center">Tasks</h1>
+        <h1 class="mb-4 text-center">Tasks</h1>
+        <div>
+            <button class="calendar-btn mb-3" @click="$router.push(`/calendar/${userId}`)" >Calendar</button>
+            
+        </div>
         <div class='mb-3'>
             <label class="col mb-1" for="">ค้นหา</label>
             <input class="form-control col" type="text" placeholder="Default input" aria-label="default input example">
@@ -152,3 +156,14 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.calendar-btn{
+    background-color: rgb(100, 100, 199);
+    border: none;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+}
+</style>
