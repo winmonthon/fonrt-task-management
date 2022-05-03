@@ -40,7 +40,6 @@ export default {
   data() {
     return {
       form: {
-
         tel: '',
         password: null
       },
@@ -48,6 +47,10 @@ export default {
       processing: false
     }
   },
+  mounted() {
+    localStorage.removeItem('token')
+  },
+
   methods: {
     async validation() {
       const checked = await axios({
@@ -55,48 +58,57 @@ export default {
         method: 'get',
         url: `${process.env.VUE_APP_API}/users`,
         headers: {
-          Authorization: `Bearer ${this.$store.state.token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
     },
 
     async login() {
-      this.processing = true
-      await this.$store.dispatch('loginToken', {
-        tel: this.form.tel,
-        password: this.form.password
-      })
-
-      this.processing = false
-
-      if (!this.$store.state.token) {
-        this.isUser = 'เบอร์โทรศัพท์หรือรหัสผ่านไม่ถูกต้อง'
-
-        setTimeout(() => {
-          this.isUser = ''
-        }, 5000)
-      }
-
-      const SECRET_KEY = `88ea517d4a88d955c828b22ac1eb6e226094e45e57994d4c683d21c3f05aa85b1a87fb590d208a9bc523d7355d99aec8a9bd42185e0a4e87852d8b014ff92ee7`
-      const decoded = JWT.decode(this.$store.state.token, SECRET_KEY)
-
-      if (decoded.role === 'admin') {
-        this.$router.push({
-          path: `/users`
+      try {
+        this.processing = true
+        const {
+          data
+        } = await axios({
+          method: 'post',
+          url: `${process.env.VUE_APP_API}/login`,
+          data: {
+            tel: this.form.tel,
+            password: this.form.password,
+          },
         })
-      }
 
-      if (decoded.role === 'sale') {
-        this.$router.push({
-          path: `/task/sale`
+        // const SECRET_KEY = `88ea517d4a88d955c828b22ac1eb6e226094e45e57994d4c683d21c3f05aa85b1a87fb590d208a9bc523d7355d99aec8a9bd42185e0a4e87852d8b014ff92ee7`
+        // const decoded = JWT.decode(this.$store.state.token, SECRET_KEY)
 
-        })
-      } else {
+        if (data.data.user.role === 'admin') {
+          localStorage.setItem('token', data.data.token)
+          return this.$router.push({
+            path: `/users`
+          })
+        }
+
+        if (data.data.user.role === 'sale') {
+          localStorage.setItem('token', data.data.token)
+          return this.$router.push({
+            path: `/task/sale`
+
+          })
+        }
+
         alert('บัญชีของคุณยังไม่ได้รับการอนุมัติจากผู้ดูแล กรุณารอการอัพเดทจากผู้ดูแล')
         this.$router.push({
           path: `/logout`
 
         })
+
+        this.processing = false
+      } catch (error) {
+        this.isUser = error.response.data.msg
+        this.processing = false
+
+        setTimeout(() => {
+          this.isUser = ''
+        }, 5000)
       }
 
     }
