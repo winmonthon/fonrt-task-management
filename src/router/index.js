@@ -17,10 +17,16 @@ import UpdateTaskSupervisor from '../views/task/UpdateTaskSupervisor.vue'
 import UpdateTaksSale from '../views/task/UpdateTaskSale.vue'
 import UpdateTaskEngineer from '../views/task/UpdateTaskEngineer.vue'
 import Calendar from '../views/task/calendar.vue'
+import Dashboard from '../views/dash-board/view/dash-board.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
   {
     path: '/calendar/:userId',
     name: 'Calendar',

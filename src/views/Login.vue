@@ -49,12 +49,11 @@ export default {
   },
   mounted() {
     localStorage.removeItem('token')
+    localStorage.removeItem('user_info')
   },
-
   methods: {
     async validation() {
       const checked = await axios({
-
         method: 'get',
         url: `${process.env.VUE_APP_API}/users`,
         headers: {
@@ -62,7 +61,6 @@ export default {
         },
       })
     },
-
     async login() {
       try {
         this.processing = true
@@ -77,29 +75,33 @@ export default {
           },
         })
 
+        localStorage.setItem('token', data.data.token)
+        localStorage.setItem('user_info', JSON.stringify(data.data.user) )
+        this.$router.push('/dashboard')
+
         // const SECRET_KEY = `88ea517d4a88d955c828b22ac1eb6e226094e45e57994d4c683d21c3f05aa85b1a87fb590d208a9bc523d7355d99aec8a9bd42185e0a4e87852d8b014ff92ee7`
         // const decoded = JWT.decode(this.$store.state.token, SECRET_KEY)
 
-        if (data.data.user.role === 'admin') {
-          localStorage.setItem('token', data.data.token)
-          return this.$router.push({
-            path: `/users`
-          })
-        }
+        // if (data.data.user.role === 'admin') {
+        //   localStorage.setItem('token', data.data.token)
+        //   return this.$router.push({
+        //     path: `/users`
+        //   })
+        // }
 
-        if (data.data.user.role === 'sale') {
-          localStorage.setItem('token', data.data.token)
-          return this.$router.push({
-            path: `/task/sale`
+        // if (data.data.user.role === 'sale') {
+        //   localStorage.setItem('token', data.data.token)
+        //   return this.$router.push({
+        //     path: `/task/sale`
 
-          })
-        }
+        //   })
+        // }
 
-        alert('บัญชีของคุณยังไม่ได้รับการอนุมัติจากผู้ดูแล กรุณารอการอัพเดทจากผู้ดูแล')
-        this.$router.push({
-          path: `/logout`
+        // alert('บัญชีของคุณยังไม่ได้รับการอนุมัติจากผู้ดูแล กรุณารอการอัพเดทจากผู้ดูแล')
+        // this.$router.push({
+        //   path: `/logout`
 
-        })
+        // })
 
         this.processing = false
       } catch (error) {

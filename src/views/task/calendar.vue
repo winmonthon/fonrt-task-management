@@ -50,7 +50,6 @@ export default {
       } = await axios({
         method: 'get',
         url: `${process.env.VUE_APP_API}/task/user/${this.$route.params.userId}`,
-
       })
 
       this.mapData(data)

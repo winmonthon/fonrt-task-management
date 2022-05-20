@@ -135,3 +135,14 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.calendar-btn{
+    background-color: rgb(100, 100, 199);
+    border: none;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border-radius: 7px;
+}
+</style>
