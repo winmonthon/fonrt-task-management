@@ -61,7 +61,7 @@
             </div>
           </td>
           <td>
-            <div style="width:100px" :class="task.taskStatus">{{task.taskStatus}}</div>
+            <div style="width:100px" :class="`my-${task.taskStatus}`">{{task.taskStatus}}</div>
           </td>
         </tr>
 
@@ -146,7 +146,8 @@ export default {
   overflow: hidden;
 }
 
-.progress {
+.my-progress {
+  
   background-color: rgb(228, 150, 47);
   color: aliceblue !important;
   text-align: center !important;
@@ -154,7 +155,7 @@ export default {
   font-size: 0.8rem !important;
 }
 
-.pending {
+.my-pending {
   background-color: rgb(228, 180, 47);
   color: aliceblue;
   text-align: center;
@@ -162,7 +163,7 @@ export default {
   font-size: 0.8rem;
 }
 
-.resolved {
+.my-resolved {
   background-color: rgb(21, 184, 48);
   color: aliceblue;
   text-align: center;

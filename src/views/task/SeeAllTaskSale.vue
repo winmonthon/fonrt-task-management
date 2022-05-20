@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    //this.getUserProflie()
+    this.getUserProflie()
     // this.getTasks()
     // console.log(this.lineUid)
 
