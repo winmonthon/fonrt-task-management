@@ -58,13 +58,11 @@ export default {
                 description: '',
                 date: null,
                 taskStatus: '',
-
                 category: '',
-
             },
             taskId: '',
             task: '',
-            categoryEnum: ['Claim', 'Demon', 'Interna', 'MSSP Implement', 'Sub-Contractor Service'],
+            categoryEnum: ['Claim', 'Demo', 'Interna', 'MSSP Implement', 'Sub-Contractor Service'],
             taskStatusEnum: ['progress', 'pending', 'resolved']
         }
 
