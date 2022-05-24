@@ -64,7 +64,7 @@ export default {
       },
       taskId: '',
       task: '',
-      categoryEnum: ['Claim', 'Demo', 'Interna', 'MSSP Implement', 'Sub-Contractor Service'],
+      categoryEnum: ['Claim', 'Demo', 'Internal', 'MSSP Implement', 'Sub-Contractor Service'],
       taskStatusEnum: ['progress', 'pending']
     }
 
