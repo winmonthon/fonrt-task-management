@@ -3,6 +3,7 @@
   <div class="my-3">
     <h2 class="text-center">HOME</h2>
   </div>
+
   <div class="d-flex justify-content-center my-2 align-items-center">
     <input class="my-date-picker mx-1" v-model="startDate" type="month">
     TO
@@ -25,69 +26,104 @@
   </div>
 
   <div v-if="!loading" class="px-5 my-table">
-    <table class="table ">
-      <thead>
-        <tr>
-          <th scope="col">Number</th>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">End Date</th>
-          <th scope="col">Supervisor</th>
-          <th scope="col">Created By</th>
-          <th scope="col">Engineer</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(task , i) in tasks" :key="i">
-          <th scope="row">{{i+1}}</th>
-          <td>{{task.title}}</td>
-          <td>
-            <div class="my-content">{{task.description}}
-            </div>
-          </td>
-          <td>
-            <div style="width:100px">{{task.endDate | toDate}}
-            </div>
-          </td>
-          <td class="my-content">{{task.assignBy.name}}</td>
-          <td class="my-content">{{task.createBy.name}}</td>
-          <td>
-            <div v-if="task.engineer">
-              {{task.engineer.name|| '-'}}
-            </div>
-            <div v-if="!task.engineer">
-              {{ '-'}}
-            </div>
-          </td>
-          <td>
-            <div style="width:100px" :class="`my-${task.taskStatus}`">{{task.taskStatus}}</div>
-          </td>
-        </tr>
+    <div v-for="(task , i) in tasks" :key="i" class="mobile-table">
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">Number</div>
+        <div>
+          {{i+1}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">Title</div>
+        <div>
+          {{task.title}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">Description</div>
+        <div>
+          {{task.description}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">End Date</div>
+        <div>
+          {{task.endDate | toDate}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">Supervisor</div>
+        <div>
+          {{task.assignBy.name}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">Created By</div>
+        <div>
+          {{task.createBy.name}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">Engineer</div>
+        <div v-if="task.engineer">
+          {{task.engineer.name|| '-'}}
+        </div>
+        <div v-if="!task.engineer">
+          {{ '-'}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="title-mobile">Status</div>
+        <div style="width:100px" :class="`my-${task.taskStatus}`">{{task.taskStatus}}</div>
+      </div>
+    </div>
 
-      </tbody>
-    </table>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Supervisor</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Engineer</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(task , i) in tasks" :key="i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{task.title}}</td>
+            <td>
+              <div class="my-content">{{task.description}}
+              </div>
+            </td>
+            <td>
+              <div style="width:100px">{{task.endDate | toDate}}
+              </div>
+            </td>
+            <td class="my-content">{{task.assignBy.name}}</td>
+            <td class="my-content">{{task.createBy.name}}</td>
+            <td>
+              <div v-if="task.engineer">
+                {{task.engineer.name|| '-'}}
+              </div>
+              <div v-if="!task.engineer">
+                {{ '-'}}
+              </div>
+            </td>
+            <td>
+              <div style="width:100px" :class="`my-${task.taskStatus}`">{{task.taskStatus}}</div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
   </div>
-
-  <!-- 
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav> -->
-
 </div>
 </template>
 
@@ -147,7 +183,7 @@ export default {
 }
 
 .my-progress {
-  
+
   background-color: rgb(228, 150, 47);
   color: aliceblue !important;
   text-align: center !important;
@@ -180,5 +216,30 @@ export default {
   border-radius: 10px;
   font-size: 1rem;
   padding: 5px;
+}
+
+.mobile-table {
+  border-top: 1px solid;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  
+}
+
+.title-mobile {
+  font-weight: 600;
+}
+
+@media only screen and (max-width:600px) {
+   .table {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width:600px) {
+   .mobile-table {
+    display: none;
+  }
+
 }
 </style>

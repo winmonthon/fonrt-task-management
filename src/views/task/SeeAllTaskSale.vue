@@ -15,6 +15,52 @@
         <b>Page</b> <span>{{currentPage}}</span>
       </div>
     </div>
+
+    
+
+    <div v-for="(task,i) in tasks" :key="i" class="mobile-table">
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">งาน</div>
+        <div>
+          {{task.title}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">รายละเอียด</div>
+        <div>
+          {{task.description}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">กำหนดเริ่ม</div>
+        <div>
+          {{task.startDate | toDate}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">กำหนดส่ง</div>
+        <div>
+          {{task.endDate | toDate}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">ประเภท</div>
+        <div>
+          {{task.category}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">สถานะงาน</div>
+        <div>
+          {{task.taskStatus}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">จัดการ</div>
+        <button type="button" @click="updateTask(i)" class="btn btn-sm btn-outline-secondary">Edit</button>
+      </div>
+    </div>
+
     <div style="overflow-x:auto;">
       <table class=" table">
         <thead>
@@ -136,12 +182,37 @@ export default {
 </script>
 
 <style>
-.calendar-btn{
-    background-color: rgb(100, 100, 199);
-    border: none;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border-radius: 7px;
+.calendar-btn {
+  background-color: rgb(100, 100, 199);
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border-radius: 7px;
+}
+
+.mobile-table {
+  border-top: 1px solid;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+.title-mobile {
+  font-weight: 600;
+}
+
+@media only screen and (max-width:600px) {
+  .table {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width:600px) {
+  .mobile-table {
+    display: none;
+  }
+
 }
 </style>

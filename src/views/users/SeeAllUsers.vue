@@ -12,8 +12,45 @@
         <b>Page</b> <span>{{currentPage}}</span>
       </div>
     </div>
+
+    <div v-for="(user,i) in users" :key="i" class="mobile-table">
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">ชื่อ</div>
+        <div>
+          {{user.name}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">เบอร์โทรศัพท์</div>
+        <div>
+          {{user.tel}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">อีเมล</div>
+        <div>
+          {{user.email}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">ตำแหน่ง</div>
+        <div>
+          {{user.role}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between my-1">
+        <div class="title-mobile">จัดการ</div>
+        <div>
+          <button type="button" @click="updateUser(i)" class="btn mx-1 btn-sm btn-outline-secondary">Edit</button>
+          <button type="button" @click="deleteUser(i)" class="btn mx-1 btn-sm btn-outline-danger">Delete</button>
+        </div>
+
+      </div>
+      
+    </div>
+
     <div style="overflow-x:auto;">
-      <table class=" table">
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">ชื่อ</th>
@@ -63,9 +100,9 @@ export default {
     }
   },
   async mounted() {
-      if(!localStorage.token){
-          return this.$router.push('/login')
-      }
+    if (!localStorage.token) {
+      return this.$router.push('/login')
+    }
     this.getUsers()
     // this.checkLogin()
   },
@@ -144,3 +181,30 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.mobile-table {
+  border-top: 1px solid;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+.title-mobile {
+  font-weight: 600;
+}
+
+@media only screen and (max-width:600px) {
+  .table {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width:600px) {
+  .mobile-table {
+    display: none;
+  }
+
+}
+</style>
