@@ -21,100 +21,99 @@ import Dashboard from '../views/dash-board/view/dash-board.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
-  },
-  {
-    path: '/calendar/:userId',
-    name: 'Calendar',
-    component: Calendar,
-  },
-  {
-    path: '/',
-    name: 'Register',
-    component: Register,
-  },
-  {
-    path: '/users',
-    name: 'SeeAllUsers',
-    component: SeeAllusers,
-  },
-  {
-    path: '/updateuser/:id',
-    name: 'UpdateUsers',
-    component: UpdateUser,
-  },
-  {
-    path: '/task/supervisor/edit/:taskId',
-    name: 'UpdateTaskSupervisor',
-    component: UpdateTaskSupervisor,
-  },
-  {
-    path: '/task/engineer/edit/:taskId',
-    name: 'UpdateTaskEngineer',
-    component: UpdateTaskEngineer,
-  },
-  {
-    path: '/task/sale/edit/:taskId',
-    name: 'UpdateTaskSale',
-    component: UpdateTaksSale,
-  },
-  {
-    path: '/task/supervisor',
-    name: 'SeeAllTaskSupervisor',
-    component: SeeAllTaskSupervior,
-  },
-  {
-    path: '/task/engineer',
-    name: 'SeeAllTaskEngineer',
-    component: SeeAllTaskEngineer,
-  },
-  {
-    path: '/task/sale',
-    name: 'SeeAllTaskSale',
-    component: SeeAllTaskSale,
-  },
+const routes = [{
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
+    },
+    {
+        path: '/calendar/:userId',
+        name: 'Calendar',
+        component: Calendar,
+    },
+    {
+        path: '/',
+        name: 'Register',
+        component: Register,
+    },
+    {
+        path: '/users',
+        name: 'SeeAllUsers',
+        component: SeeAllusers,
+    },
+    {
+        path: '/updateuser/:id',
+        name: 'UpdateUsers',
+        component: UpdateUser,
+    },
+    {
+        path: '/task/supervisor/edit/:taskId',
+        name: 'UpdateTaskSupervisor',
+        component: UpdateTaskSupervisor,
+    },
+    {
+        path: '/task/engineer/edit/:taskId',
+        name: 'UpdateTaskEngineer',
+        component: UpdateTaskEngineer,
+    },
+    {
+        path: '/task/sale/edit/:taskId',
+        name: 'UpdateTaskSale',
+        component: UpdateTaksSale,
+    },
+    {
+        path: '/task/supervisor',
+        name: 'SeeAllTaskSupervisor',
+        component: SeeAllTaskSupervior,
+    },
+    {
+        path: '/task/engineer',
+        name: 'SeeAllTaskEngineer',
+        component: SeeAllTaskEngineer,
+    },
+    {
+        path: '/task/sale',
+        name: 'SeeAllTaskSale',
+        component: SeeAllTaskSale,
+    },
 
-  {
-    path: '/createtasksuccess',
-    name: 'CreateTaskSuccess',
-    component: CreateTaskSuccess,
-  },
+    {
+        path: '/createtasksuccess',
+        name: 'CreateTaskSuccess',
+        component: CreateTaskSuccess,
+    },
 
-  {
-    path: '/registersuccess',
-    name: 'RegisterSuccess',
-    component: RegisterSuccess,
-  },
+    {
+        path: '/registersuccess',
+        name: 'RegisterSuccess',
+        component: RegisterSuccess,
+    },
 
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login,
-  },
-  {
-    path: '/logout',
-    name: 'Logout',
-    component: Logout,
-  },
-  {
-    path: '/task',
-    name: 'Task',
-    component: CreateTask,
-  },
-  {
-    path: '*',
-    name: 'NotFound',
-    component: PageNotFound,
-  },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+    },
+    {
+        path: '/logout',
+        name: 'Logout',
+        component: Logout,
+    },
+    {
+        path: '/task',
+        name: 'Task',
+        component: CreateTask,
+    },
+    {
+        path: '*',
+        name: 'NotFound',
+        component: PageNotFound,
+    },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  routes,
+    mode: 'history',
+    routes,
 })
 
 export default router

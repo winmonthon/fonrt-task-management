@@ -1,40 +1,45 @@
 <template>
-<div id='app'>
-  <div v-if="navbarEnable">
-    <navbar />
+  <div id="app" class="dark:bg-gray-900 text-white min-h-screen">
+    <div v-if="navbarEnable">
+      <navbar />
+    </div>
+    <router-view />
   </div>
-  <router-view />
-</div>
 </template>
 
 <script>
-import Navbar from '../src/components/navbar.vue'
+import Navbar from '../src/components/navbar.vue';
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
   },
   computed: {
     navbarEnable() {
-      return !this.forbidRoutes.includes(this.$route.name)
+      return !this.forbidRoutes.includes(this.$route.name);
     },
   },
   data: () => ({
-    forbidRoutes: [
-      'Login',
-      'Register'
-    ],
+    forbidRoutes: ['Login', 'Register'],
   }),
 };
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
 #app {
   font-family: 'Prompt', sans-serif;
 }
 
-.my-btn:hover{
-cursor: pointer !important;
+.my-btn:hover {
+  cursor: pointer !important;
 }
 </style>

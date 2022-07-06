@@ -1,18 +1,47 @@
 <template>
-<nav class="my-navbar navbar-dark bg-dark ">
+  <nav
+    class="flex justify-between w-full px-5 border-b border-gray-600 py-6 px-10"
+  >
+    <div class="text-white">
+      <button
+        class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
+        @click="$router.push('/dashboard')"
+      >
+        HOME
+      </button>
+      <button
+        v-if="user.role === 'admin'"
+        class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
+        @click="$router.push('/users')"
+      >
+        USER
+      </button>
+      <button
+        v-if="user.role !== 'admin'"
+        class="mx-2 hover:text-gray-600 py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
+        @click="toTask"
+      >
+        TASK
+      </button>
+    </div>
 
-  <div class="text-white">
-    <button class="navbar-brand btn fs-5 " @click="$router.push('/dashboard')">HOME</button>
-    <button v-if="user.role === 'admin'" class="navbar-brand btn fs-5 " @click="$router.push('/users')">USER</button>
-    <button v-if="user.role !== 'admin'" class="navbar-brand btn fs-5 " @click="toTask">TASK</button>
-  </div>
-
-  <div class="">
-    <button v-if="!isLogin" class="navbar-brand fs-5 btn btn-outline-light" @click="$router.push('/login')">Login</button>
-    <button v-if="isLogin" class="navbar-brand fs-5 btn btn-outline-light" @click="$router.push('/login')">Logout</button>
-  </div>
-
-</nav>
+    <div>
+      <button
+        v-if="!isLogin"
+        class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
+        @click="$router.push('/login')"
+      >
+        Login
+      </button>
+      <button
+        v-if="isLogin"
+        class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
+        @click="$router.push('/login')"
+      >
+        Logout
+      </button>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -20,49 +49,37 @@ export default {
   name: 'Navbar',
   computed: {
     loggedIn() {
-      return this.$store.getters.loggedIn
+      return this.$store.getters.loggedIn;
     },
     lineLoggedIn() {
-      return this.$store.getters.lineLoggedIn
+      return this.$store.getters.lineLoggedIn;
     },
     isLogin() {
       if (localStorage.token) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
-    }
+    },
   },
   data() {
     return {
-      user: {}
-    }
+      user: {},
+    };
   },
   mounted() {
-    this.user = JSON.parse(localStorage.getItem('user_info'))
+    this.user = JSON.parse(localStorage.getItem('user_info'));
   },
   methods: {
     toTask() {
       if (this.user.role === 'sale') {
-
-        return this.$router.push('/task/sale')
+        return this.$router.push('/task/sale');
       }
 
       if (this.user.role === 'supervisor') {
-
-        return this.$router.push('/task/supervisor')
+        return this.$router.push('/task/supervisor');
       }
-    }
-  }
-
-}
+    },
+  },
+};
 </script>
-
-<style>
-.my-navbar {
-  display: flex;
-  padding: 10px;
-  justify-content: space-between !important;
-  width: 100%;
-}
-</style>
