@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="dark:bg-gray-900 text-white min-h-screen">
+  <div id="app" class="bg-gray-900 text-white dark:bg-gray-900 dark:text-white min-h-screen">
     <div v-if="navbarEnable">
       <navbar />
     </div>

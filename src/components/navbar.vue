@@ -1,29 +1,31 @@
 <template>
   <nav
-    class="flex justify-between w-full px-5 border-b border-gray-600 py-6 px-10"
+    class="flex justify-between w-full px-3 border-b border-gray-600 py-6 md:px-10 "
   >
-    <div class="text-white">
+    <div class="text-white flex">
+      <img class="w-16 hidden md:block" src="../../public/building.png">
       <button
         class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
         @click="$router.push('/dashboard')"
       >
-        HOME
+        <i class="fa-solid fa-house mr-2"></i>HOME
       </button>
       <button
         v-if="user.role === 'admin'"
         class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
         @click="$router.push('/users')"
       >
-        USER
+        <i class="fa-solid fa-user mr-2"></i>USER
       </button>
       <button
         v-if="user.role !== 'admin'"
         class="mx-2 hover:text-gray-600 py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
         @click="toTask"
       >
-        TASK
+        <i class="fa-solid fa-clipboard mr-2"></i>TASK
       </button>
     </div>
+    
 
     <div>
       <button
@@ -35,10 +37,10 @@
       </button>
       <button
         v-if="isLogin"
-        class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200"
+        class="mx-2 hover:text-gray-600  py-2 px-3 rounded-lg bg-indigo-500 hover:bg-indigo-200 flex items-center"
         @click="$router.push('/login')"
       >
-        Logout
+        <i class="fa-solid fa-right-from-bracket mr-2 "></i><span class="hidden md:block">Logout</span>
       </button>
     </div>
   </nav>

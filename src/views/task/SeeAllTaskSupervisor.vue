@@ -1,13 +1,13 @@
 <template>
   <div class="px-5">
-    <div class="mt-5  ">
+    <div class="mt-5 ">
       <h1 class="mb-4 text-center">Tasks</h1>
       <div>
         <button
           class="w-full mb-5 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
           @click="$router.push(`/calendar/${userId}`)"
         >
-          Calendar
+          <i class="fa-solid fa-calendar-days mr-2"></i>Calendar
         </button>
       </div>
       <div class="mb-3">
@@ -153,7 +153,7 @@ export default {
     };
   },
   mounted() {
-    this.getUserProflie();
+    // this.getUserProflie();
     //this.getTasks()
     // console.log(this.lineUid)
   },
