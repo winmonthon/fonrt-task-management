@@ -144,7 +144,7 @@ export default {
     };
   },
   mounted() {
-    // this.getLineUid();
+    this.getLineUid();
   },
   methods: {
     async createUser() {
