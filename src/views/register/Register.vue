@@ -17,7 +17,7 @@
       <div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
         <div class="flex-1">
           <div class="flex flex-col items-center">
-            <img class="w-60 mb-8" src="../../../public/building.png">
+            <!-- <img class="w-60 mb-8" src="../../../public/building.png"> -->
             <h2
               class="text-4xl font-bold text-center text-gray-700 dark:text-white"
             >
