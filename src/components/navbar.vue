@@ -78,6 +78,10 @@ export default {
         return this.$router.push('/task/sale');
       }
 
+       if (this.user.role === 'engineer') {
+        return this.$router.push('/task/engineer');
+      }
+
       if (this.user.role === 'supervisor') {
         return this.$router.push('/task/supervisor');
       }

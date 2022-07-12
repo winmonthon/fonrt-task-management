@@ -232,4 +232,16 @@ export default {
   width: 100%;
   border-radius: 7px;
 }
+
+@media only screen and (max-width: 600px) {
+  .table {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .mobile-table {
+    display: none;
+  }
+}
 </style>
