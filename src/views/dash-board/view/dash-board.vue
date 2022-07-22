@@ -1,6 +1,6 @@
 <template>
   <div class="mt-10">
-    <h1 class="mb-5 text-center">Users</h1>
+    <h1 class="mb-5 text-center">Home</h1>
     <div class="flex justify-center items-center">
       <input
         class="block px-4 py-2 mr-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"

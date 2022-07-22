@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center">
     <div class="mt-5 col-10">
-      <h1 class="mb-5 text-center">New Task</h1>
+      <h1 class="mb-5 text-center">Update Task</h1>
       <div>
         <form @submit.prevent="updateTask()">
           <div class="border-b my-5 pb-5">
