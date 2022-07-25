@@ -42,4 +42,13 @@ export default {
 .my-btn:hover {
   cursor: pointer !important;
 }
+
+.fliter-input {
+  max-width: 500px;
+}
+
+.search-input {
+  max-width: 500px;
+  width: 100%;
+}
 </style>
