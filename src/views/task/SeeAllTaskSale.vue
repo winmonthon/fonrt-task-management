@@ -22,10 +22,20 @@
           <option value="progress">progress</option>
           <option value="resolved">finished</option>
         </select>
-        <!-- <input class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" type="text" placeholder="Default input" aria-label="default input example" /> -->
       </div>
 
     </div>
+
+    <div class="fliter-input-mobile">
+        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200" for="">ค้นหาด้วนสถานะ</label>
+
+        <select @change="getTasks" v-model="statusFilter" name="cars" id="cars" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" type="text" placeholder="Default input" aria-label="default input example">
+          <option value="">all</option>
+          <option value="pending">pending</option>
+          <option value="progress">progress</option>
+          <option value="resolved">finished</option>
+        </select>
+      </div>
 
     <div class="flex justify-end px-2">
       <div>
@@ -246,10 +256,18 @@ export default {
   .table {
     display: none;
   }
+
+   .fliter-input{
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 600px) {
   .mobile-table {
+    display: none;
+  }
+
+  .fliter-input-mobile{
     display: none;
   }
 }
